@@ -1,0 +1,198 @@
+/* styles.css — Luntra Travels (polished, MMTcare-inspired) */
+/* Production-ready: variables, responsive, animations, accessibility */
+
+:root{
+  --accent: #0b76ff;
+  --accent-2: #ff7a59;
+  --muted: #6b7280;
+  --bg: #f7f8fb;
+  --card: #ffffff;
+  --glass: rgba(255,255,255,0.6);
+  --shadow-sm: 0 6px 18px rgba(9,30,66,0.06);
+  --shadow-md: 0 18px 40px rgba(9,30,66,0.10);
+  --radius: 12px;
+  --maxw: 1200px;
+  --ease: cubic-bezier(.2,.9,.2,1);
+  --mono: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  --text: #071127;
+  --muted-2: #94a3b8;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--mono);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  color:var(--text);
+  background:linear-gradient(180deg,var(--bg),#ffffff);
+  -webkit-tap-highlight-color:transparent;
+}
+
+/* Container */
+.container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+/* Topbar */
+.topbar{
+  background:linear-gradient(90deg,#071127,#0b2340);
+  color:#fff;
+  font-size:13px;
+  padding:7px 0;
+}
+.topbar .container{display:flex;justify-content:space-between;align-items:center}
+.topbar a{color:rgba(255,255,255,0.92);text-decoration:none}
+
+/* Header / Nav */
+.site-header{
+  position:sticky;top:0;z-index:70;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(6px);
+  border-bottom:1px solid rgba(11,91,255,0.04);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px 0}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text)}
+.brand .logo{
+  width:48px;height:48px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow:var(--shadow-sm);
+  font-size:18px;
+}
+.brand .brand-name{font-weight:700;line-height:1}
+.brand .tag{font-size:12px;color:var(--muted-2);display:block}
+
+/* Nav list */
+.nav-wrap{display:flex;align-items:center;gap:12px}
+.nav-list{list-style:none;display:flex;gap:12px;margin:0;padding:0}
+.nav-list a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px 10px;
+  border-radius:10px;
+  font-weight:600;
+  font-size:15px;
+  transition:all .22s var(--ease);
+}
+.nav-list a:hover,
+.nav-list a:focus{
+  color:var(--text);
+  background:rgba(11,91,255,0.06);
+  transform:translateY(-2px);
+  outline: none;
+}
+
+/* Mobile nav button */
+.menu-toggle{
+  display:none;
+  background:transparent;border:0;font-size:20px;padding:6px 8px;cursor:pointer;
+}
+
+/* Hero */
+.hero{
+  position:relative;overflow:hidden;
+  min-height:70vh;display:flex;align-items:center;
+}
+.hero-parallax{
+  position:absolute;inset:0;background-image:url('/assets/hero-large.jpg');
+  background-size:cover;background-position:center;transform:translateY(0);
+  filter:contrast(95%) saturate(96%);will-change:transform;
+}
+.hero-overlay{
+  position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,17,39,0.28),rgba(7,17,39,0.05));
+}
+.hero-inner{
+  position:relative;z-index:3;display:grid;grid-template-columns:1fr 520px;gap:36px;align-items:center;padding:72px 0;
+}
+.hero-copy{max-width:640px}
+.hero h1{
+  font-size:44px;line-height:1.02;margin:0 0 12px;font-weight:700;
+}
+.hero .accent{color:var(--accent)}
+.lead{color:var(--muted-2);font-size:18px;margin-bottom:18px}
+
+/* Search inline */
+.search-inline{display:flex;gap:10px;align-items:center;margin:10px 0 18px}
+.search-inline input, .search-inline select{
+  flex:1;padding:12px 14px;border-radius:10px;border:1px solid rgba(11,91,255,0.06);background:#fff;font-size:15px;
+  transition:box-shadow .18s var(--ease), transform .12s var(--ease);
+}
+.search-inline input:focus, .search-inline select:focus{
+  box-shadow:0 6px 20px rgba(11,118,255,0.10);outline:none;transform:translateY(-2px);
+}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;border:0;font-weight:700;cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--accent);color:#fff;box-shadow:0 10px 30px rgba(11,118,255,0.12)}
+.btn.primary:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;border:1px solid rgba(11,91,255,0.06);color:var(--text)}
+
+/* Hero media / slider card */
+.hero-media{display:flex;align-items:center;justify-content:center}
+.slider{width:100%;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#fff,#fbfdff);box-shadow:var(--shadow-md)}
+.slide{display:none;position:relative}
+.slide.active{display:block}
+.slide img{width:100%;height:360px;object-fit:cover;display:block}
+.slide .caption{position:absolute;left:16px;bottom:18px;background:rgba(0,0,0,0.5);color:#fff;padding:8px 12px;border-radius:8px;font-weight:700}
+
+/* Wave separator */
+.wave{position:relative;line-height:0;margin-top:-4px}
+
+/* Sections */
+.section{padding:56px 0}
+.section h2{font-size:22px;margin:0 0 6px}
+.section .muted{color:var(--muted-2);margin-bottom:12px}
+
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:18px}
+.card{background:var(--card);padding:18px;border-radius:12px;box-shadow:var(--shadow-sm);transition:transform .24s var(--ease),box-shadow .24s var(--ease)}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 45px rgba(9,30,66,0.12)}
+
+/* Service specific */
+.service-card .icon{width:40px;height:40px;display:block;margin-bottom:12px;fill:var(--accent)}
+
+/* Destination tiles */
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:18px}
+.dest{border-radius:12px;overflow:hidden;position:relative;box-shadow:var(--shadow-sm)}
+.dest img{width:100%;height:200px;object-fit:cover}
+.dest-info{position:absolute;left:0;bottom:0;padding:12px 14px;background:linear-gradient(180deg,rgba(0,0,0,0.6),transparent);color:#fff;font-weight:700}
+
+/* Contact area */
+.contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+.contact-card{padding:18px}
+.contact-card input,.contact-card textarea,.contact-card select{
+  width:100%;padding:12px;border-radius:10px;border:1px solid rgba(11,91,255,0.06);margin-bottom:10px;background:#fff;font-size:15px;
+}
+.form-actions{display:flex;gap:10px;align-items:center}
+.form-status{margin-top:8px;color:var(--muted-2);font-size:14px}
+
+/* Footer */
+.site-footer{background:#071127;color:#fff;padding:28px 0;margin-top:36px;border-top:1px solid rgba(255,255,255,0.02)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.footer-inner a{color:rgba(255,255,255,0.85);text-decoration:none}
+
+/* small helpers */
+.muted{color:var(--muted-2)}
+.small{font-size:13px;color:var(--muted-2)}
+
+/* animation hooks (initial state) */
+.card,.service-card,.dest,.contact-card,.slide{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+}
+
+/* responsive */
+@media (max-width:1000px){
+  .hero-inner{grid-template-columns:1fr;gap:20px;padding:40px 0}
+  .hero-parallax{background-position:center}
+  .slide img{height:260px}
+  .nav-list{display:none}
+  .menu-toggle{display:inline-block}
+  .contact-grid{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .hero h1{font-size:28px}
+  .slide img{height:220px}
+}
