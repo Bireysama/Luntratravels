@@ -49,9 +49,11 @@
     .navbar h1 {
       font-size:42px;
       font-weight:800;
-      background: linear-gradient(45deg, #0666D3, #34a8f5);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+     background: linear-gradient(45deg, #0666D3, #34a8f5);
+     background-clip: text;           /* standard property for compatibility */
+     -webkit-background-clip: text;   /* WebKit browsers */
+     -webkit-text-fill-color: transparent;
+
       text-transform:uppercase;
       letter-spacing:1px;
       text-shadow:2px 2px 6px rgba(0,0,0,0.2);
@@ -207,21 +209,48 @@
 
 <section class="section" id="destinations">
   <h3>Popular Destinations</h3>
+
   <div class="destinations">
-    <div class="dest">
-      <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad" />
-      <div class="dest-info">Maldives</div>
+
+    <!-- Tokyo -->
+    <div class="dest reveal">
+      <img
+        src="https://images.unsplash.com/photo-1549693578-d683be217e58?q=80&w=1400&auto=format&fit=crop"
+        alt="Tokyo skyline at night"
+      />
+      <div class="dest-overlay">
+        <h4>Tokyo</h4>
+        <span>Japan</span>
+      </div>
     </div>
-    <div class="dest">
-      <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad" />
-      <div class="dest-info">Turkey</div>
+
+    <!-- Dubai -->
+    <div class="dest reveal">
+      <img
+        src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=1400&auto=format&fit=crop"
+        alt="Dubai skyline"
+      />
+      <div class="dest-overlay">
+        <h4>Dubai</h4>
+        <span>United Arab Emirates</span>
+      </div>
     </div>
-    <div class="dest">
-      <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad" />
-      <div class="dest-info">Dubai</div>
+
+    <!-- London -->
+    <div class="dest reveal">
+      <img
+        src="https://images.unsplash.com/photo-1488747279002-c8523379faaa?q=80&w=1400&auto=format&fit=crop"
+        alt="London city skyline"
+      />
+      <div class="dest-overlay">
+        <h4>London</h4>
+        <span>United Kingdom</span>
+      </div>
     </div>
+
   </div>
 </section>
+
 
 <section class="section" id="contact">
   <h3>Contact Us</h3>
@@ -242,5 +271,24 @@
 <!-- Bottom animated gradient bar -->
 <div class="bottom-bar"></div>
 
+<script>
+  const revealElements = document.querySelectorAll('.reveal');
+
+  const revealOnScroll = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealOnScroll.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.2 }
+  );
+
+  revealElements.forEach(el => revealOnScroll.observe(el));
+</script>
+
 </body>
 </html>
+
